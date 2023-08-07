@@ -1,11 +1,12 @@
 <?= $this->extend('layout/template'); ?> <!-- Template Content -->
 
 <?= $this->section('content'); ?> <!-- Content Start -->
+
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1 class="my-3">Contact Us</h1>
-            <h2 class="text text-center">TABEL ALAMAT</h2>
+            <h1 class="my-3">Category</h1>
+            <h2 class="text text-center my-3">Tabel Category</h2>
             <table>
                 <style>
                     table {
@@ -38,7 +39,7 @@
                     <th>Email</th>
 
                 </tr>
-                <?php foreach ($alamat as $a) : ?>
+                <?php foreach ($category as $a) : ?>
                     <tr>
                         <td><?= $a['tipe']; ?></td>
                         <td><?= $a['alamat']; ?></td>
@@ -50,30 +51,29 @@
 
                 <!-- Tambahkan baris lain untuk alamat lainnya -->
             </table>
-
-
-
-            <br>
-
-            <div class="container">
-                <div class="row">
-
-                    <?php foreach ($alamat as $a) : ?>
-                        <tr>
-                            <td>
-                                <ul>
-                                    <li>Type : <?= $a['tipe']; ?></li>
-                                    <li>Alamat : <?= $a['alamat']; ?></li>
-                                    <li>Telepon : <?= $a['telepon']; ?></li>
-                                    <li>Email : <?= $a['email']; ?></li>
-                                </ul>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </div>
-            </div>
         </div>
     </div>
 </div>
 
+<!-- Start -->
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="my-3">Category</h1>
+            <?php foreach ($category as $c) : ?>
+                <tr>
+                    <td>
+                        <ul>
+                            <li>Type : <?= $c['tipe']; ?></li>
+                            <li>Alamat : <?= $c['alamat']; ?></li>
+                            <li>Telepon : <?= $c['telepon']; ?></li>
+                            <li>Email : <?= $c['email']; ?></li>
+                        </ul>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+<!-- End -->
 <?= $this->endSection(); ?> <!-- Content End  -->

@@ -8,7 +8,7 @@ class Pages extends BaseController
     public function index()
     {
         $data = [
-            'title' => "Home",
+            'title' => "Home Page",
             'tes'   => ['satu', 'dua', 'tiga']
         ];
 
@@ -25,6 +25,46 @@ class Pages extends BaseController
         // echo view('layout/footer');
     }
     // -----------------------------------------------------------------------------------------------------
+    public function category()
+    {
+        $data   = [
+            'title' => "Category",
+            'category'    => [
+                [
+                    'tipe'      => 'DPRD',
+                    'alamat'    => 'Malang, Jawa Timur',
+                    'telepon'   => '+62 853 1544 8868',
+                    'email'     => 'ssolakip@gmail.com'
+                ],
+                [
+                    'tipe'      => 'PEMDA',
+                    'alamat'    => 'Kemayoran, Jakarta Pusat',
+                    'telepon'   => '+62 21 4288 5718',
+                    'email'     => 'lakippusat@gmail.com'
+                ],
+                [
+                    'tipe'      => 'Dispenda',
+                    'alamat'    => 'Kemayoran, Jakarta Pusat',
+                    'telepon'   => '+62 21 4288 5718',
+                    'email'     => 'lakippusat@gmail.com'
+                ],
+                [
+                    'tipe'      => 'OPD',
+                    'alamat'    => 'Kemayoran, Jakarta Pusat',
+                    'telepon'   => '+62 21 4288 5718',
+                    'email'     => 'lakippusat@gmail.com'
+                ],
+                [
+                    'tipe'      => 'Desa',
+                    'alamat'    => 'Kemayoran, Jakarta Pusat',
+                    'telepon'   => '+62 21 4288 5718',
+                    'email'     => 'lakippusat@gmail.com'
+                ]
+            ],
+        ];
+        return view('pages/category', $data);
+    }
+    // ---------------------------------------------------------------------------------------
     public function about()
     {
         $data = [

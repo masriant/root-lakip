@@ -4,8 +4,13 @@
 <div class="container">
     <div class="row">
         <div class="col">
+            <a href="/materi/create" class="btn btn-primary mt-3">Tambah Data Materi</a>
             <h1 class="mt-2">Daftar Materi</h1>
-            <a href="/materi/create" class="btn btn-primary mb-3">Tambah Data Materi</a>
+            <?php if (session()->getFlashdata('pesan')) : ?>
+                <div class="alert alert-success" role="alert">
+                    <?= session()->getFlashdata('pesan'); ?>
+                </div>
+            <?php endif; ?>
             <table class="table">
                 <thead>
                     <tr>

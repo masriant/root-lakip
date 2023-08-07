@@ -30,15 +30,16 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
-
+// PAGES
 $routes->get('/pages', 'Pages::index');
 $routes->get('/pages/profile', 'Pages::profile');
+$routes->get('/pages/category', 'Pages::category');
 $routes->get('/pages/about', 'Pages::about');
 $routes->get('/pages/contact', 'Pages::contact');
-
+// MATERI
 $routes->get('/materi', 'Materi::index');
 $routes->get('/materi/create', 'Materi::create');
-// $routes->post('/materi/save', 'Materi::index');
+$routes->post('/materi/save', 'Materi::save');
 $routes->get('/materi/(:segment)', 'Materi::detail/$1');
 
 

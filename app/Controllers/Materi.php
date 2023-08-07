@@ -11,6 +11,7 @@ class Materi extends BaseController
     {
         $this->materiModel = new MateriModel();
     }
+    // ---------------------------------------------------------------------------------------
     public function index()
     {
         // $materi = $this->materiModel->findAll();
@@ -64,14 +65,15 @@ class Materi extends BaseController
         // $materi = $this->materiModel->getMateri($slug);
         // dd($materi);
 
+        // ---------------------------------------------------------------------------------------
         $data = [
-            'title'     => 'Detail Materi',
+            'title'     => 'Details Materi',
             'materi'    => $this->materiModel->getMateri($slug)
         ];
 
         // Jika materi tidak ada di tabel
         if (empty($data['materi'])) {
-            throw new \CodeIgniter\Exceptions\PageNotFoundException('Judul Materi ' . $slug . ' tidak ditemukan.');
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Event Materi ' . $slug . ' tidak ditemukan.');
         }
 
         return view('materi/detail', $data);
@@ -80,8 +82,10 @@ class Materi extends BaseController
     // ---------------------------------------------------------------------------------------
     public function create()
     {
+        // session();
         $data   = [
-            'title' => "Form Tambah Data Materi"
+            'title' => 'Form Tambah Data Materi',
+            'validation' => \Config\Services::validation()
         ];
 
         return view('materi/create', $data);
@@ -90,6 +94,29 @@ class Materi extends BaseController
     // ---------------------------------------------------------------------------------------
     public function save()
     {
+        // validasi input
+        if (!$this->validate([
+            'judul' => [
+                'rules' => 'required|is_unique[materi.judul]',
+                'errors' => [
+                    'required' => '{field} harus diisi!',
+                    'is_unique' => '{field} sudah terdaftar!'
+                ]
+            ]
+        ])) {
+
+            $validation = \Config\Services::validation();
+            // dd($validation);
+            // return redirect()->to('/materi/create');
+
+            // $data['validation'] = $validation;
+            // return view('/materi/create', $data);
+
+            return redirect()->to('/materi/create')->withInput()->with('validation', $validation);
+        }
+
+
+
         $slug = url_title($this->request->getVar('judul'), '-', true);
         $this->materiModel->save([
             'judul' => $this->request->getVar('judul'),
@@ -98,6 +125,8 @@ class Materi extends BaseController
             'penerbit' => $this->request->getVar('penerbit'),
             'sampul' => $this->request->getVar('sampul')
         ]);
+
+        session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');
 
         return redirect()->to('/materi');
     }
@@ -110,4 +139,5 @@ class Materi extends BaseController
         ];
         return view('materi/category', $data);
     }
+    // ---------------------------------------------------------------------------------------
 }

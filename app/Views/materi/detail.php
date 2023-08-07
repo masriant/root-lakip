@@ -18,8 +18,7 @@
 
                             <a href="" class="btn btn-warning"> Edit</a>
                             <a href="" class="btn btn-danger"> Delete</a>
-                            <br><br>
-                            <a href="/materi"> Back to Daftar Materi</a>
+                            <a href="/materi" class="btn btn-success"> Back to List Materi</a>
                         </div>
                     </div>
                 </div>
