@@ -85,7 +85,7 @@ class Materi extends BaseController
         // session();
         $data   = [
             'title' => 'Form Tambah Data Materi',
-            'validation' => \Config\Services::validation()
+            'validation' => \Config\Services::validation(),
         ];
 
         return view('materi/create', $data);
@@ -96,6 +96,8 @@ class Materi extends BaseController
     {
         // validasi input
         if (!$this->validate([
+            // 'judul' => 'required|is_unique[materi.judul]',
+
             'judul' => [
                 'rules' => 'required|is_unique[materi.judul]',
                 'errors' => [
@@ -106,12 +108,6 @@ class Materi extends BaseController
         ])) {
 
             $validation = \Config\Services::validation();
-            // dd($validation);
-            // return redirect()->to('/materi/create');
-
-            // $data['validation'] = $validation;
-            // return view('/materi/create', $data);
-
             return redirect()->to('/materi/create')->withInput()->with('validation', $validation);
         }
 
