@@ -68,9 +68,8 @@ class Materi extends BaseController
             // 'penulis'       => 'required',
             // 'sampul'       => 'mime_in[sampul,image]|max_size[materi.sampul]'
             'sampul'     => [
-                'rules'     => 'uploaded[sampul]|max_size[sampul,1024]|is_image[sampul]|mime_in[sampul,image/jpg,image/jpeg,image/png]',
+                'rules'     => 'max_size[sampul,1024]|is_image[sampul]|mime_in[sampul,image/jpg,image/jpeg,image/png]',
                 'errors'    => [
-                    'uploaded'      => 'Pilih gambar sampul terlebih dahulu',
                     'max_size'      => 'maksimal ukuran sampul adalah 1MB - Ukuran gambar terlalu besar',
                     'is_image'      => 'Yang dipilih bukan gambar',
                     'mime_in'       => 'masukkan file gambar dengan ekstensi jpg,png atau jpeg.'
@@ -112,10 +111,21 @@ class Materi extends BaseController
         // $fileSampul->move('./uploads/',$newName);
 
         $fileSampul = $this->request->getFile('sampul');
-        // pindahkan file ke folder image
-        $fileSampul->move('images');
-        // ambil nama file
-        $namaSampul = $fileSampul->getName();
+        // apakah tidak ada gambar yang di upload
+        if ($fileSampul->getError() == 4) {
+            $namaSampul = 'default.jpg';
+        } else {
+            // Generate nama sampul random
+            $namaSampul = $fileSampul->getRandomName();
+            // pindahkan file ke folder image
+            $fileSampul->move('images', $namaSampul);
+        }
+
+
+
+
+        // ambil nama file sampul
+        // $namaSampul = $fileSampul->getName();
 
 
         $slug = url_title($this->request->getVar('judul'), '-', true);
@@ -135,6 +145,15 @@ class Materi extends BaseController
     // ---------------------------------------------------------------------------------------
     public function delete($id)
     {
+        // cari gambar berdasarkan id
+        $materi = $this->materiModel->find($id);
+
+        // cek jika file gambar default
+        if ($materi['sampul'] != 'default.jpg') {
+            // hapus gambar
+            unlink('images/' . $materi['sampul']);
+        }
+
         $this->materiModel->delete($id);
         session()->setFlashdata('pesan', 'Data berhasil dihapus.');
         return redirect()->to('/materi');
@@ -172,12 +191,37 @@ class Materi extends BaseController
                     'required'  => '{field} harus diisi!',
                     'is_unique' => '{field} sudah terdaftar pada database kami, gunakan yang unik!'
                 ]
+            ],
+            'sampul'     => [
+                'rules'     => 'max_size[sampul,1024]|is_image[sampul]|mime_in[sampul,image/jpg,image/jpeg,image/png]',
+                'errors'    => [
+                    'max_size'      => 'maksimal ukuran sampul adalah 1MB - Ukuran gambar terlalu besar',
+                    'is_image'      => 'Yang dipilih bukan gambar',
+                    'mime_in'       => 'masukkan file gambar dengan ekstensi jpg,png atau jpeg.'
+                ]
             ]
         ])) {
 
-            $validation = \Config\Services::validation();
-            return redirect()->to('/materi/edit/' . $this->request->getVar('slug'))->withInput()->with('validation', $validation);
+            // $validation = \Config\Services::validation();
+            // return redirect()->to('/materi/edit/' . $this->request->getVar('slug'))->withInput()->with('validation', $validation);
+
+            return redirect()->to('/materi/edit/' . $this->request->getVar('slug'))->withInput();
         }
+
+        $fileSampul = $this->request->getFile('sampul');
+
+        // cek gambar, apakah tetap gambar lama
+        if ($fileSampul->getError() == 4) {
+            $namaSampul = $this->request->getVar('sampulLama');
+        } else {
+            // generate nama file random
+            $namaSampul = $fileSampul->getRandomName();
+            // pindahkan file ke folder img
+            $fileSampul->move('images/', $namaSampul);
+            // hapus file lama
+            unlink('images/' . $this->request->getVar('sampulLama'));
+        }
+
         // ---------------------------------------------------------------------------------------
 
         $slug = url_title($this->request->getVar('judul'), '-', true);
@@ -187,7 +231,7 @@ class Materi extends BaseController
             'slug'      => $slug,
             'penulis'   => $this->request->getVar('penulis'),
             'penerbit'  => $this->request->getVar('penerbit'),
-            'sampul'    => $this->request->getVar('sampul')
+            'sampul'    => $namaSampul
         ]);
 
         session()->setFlashdata('pesan', 'Data berhasil diubah.');
