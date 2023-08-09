@@ -63,12 +63,60 @@ class Materi extends BaseController
                     'required'  => '{field} harus diisi!',
                     'is_unique' => '{field} sudah terdaftar pada database kami, gunakan yang unik!'
                 ]
+            ],
+            // 'penerbit'       => 'required',
+            // 'penulis'       => 'required',
+            // 'sampul'       => 'mime_in[sampul,image]|max_size[materi.sampul]'
+            'sampul'     => [
+                'rules'     => 'uploaded[sampul]|max_size[sampul,1024]|is_image[sampul]|mime_in[sampul,image/jpg,image/jpeg,image/png]',
+                'errors'    => [
+                    'uploaded'      => 'Pilih gambar sampul terlebih dahulu',
+                    'max_size'      => 'maksimal ukuran sampul adalah 1MB - Ukuran gambar terlalu besar',
+                    'is_image'      => 'Yang dipilih bukan gambar',
+                    'mime_in'       => 'masukkan file gambar dengan ekstensi jpg,png atau jpeg.'
+                ]
             ]
         ])) {
 
-            $validation = \Config\Services::validation();
-            return redirect()->to('/materi/create')->withInput()->with('validation', $validation);
+            // $validation = \Config\Services::validation();
+            // return redirect()->to('/materi/create')->withInput()->with('validation', $validation);
+
+            return redirect()->to('/materi/create')->withInput();
         }
+
+        // Ambil Gambar
+        // $fileSampul = $this->request->getFile('sampul');
+        // if ($fileSampul->getError() == 4) {
+        //     $namaSampul ='sampul-default.jpg';
+        //     } else {
+        //         // Generate nama sampul random
+        //         $namaSampul = $fileSampul->getRandomName();
+        //         // Pindahkan File ke folder img
+        //         $fileSampul->move('img/', $namaSampul);
+        //         };
+
+        // $fileSampul = $this->request->getFile('sampul');
+        // $fileName = $fileSampul->getName();
+        // $path = './public/'. $fileName;
+        // move_uploaded_file($_FILES['sampul']['tmp_name'],$path );
+        // echo "File is valid, and was successfully uploaded.\n";
+        // print_r( $_FILES["sampul"]["size"]);
+        // dd($this->request->getPost());
+
+        // $fileSampul = $this->request->getFile('sampul');
+        // $fileName = $fileSampul->getClientName();
+        // $fileSampul->storeAs('/', $fileName,'my_files/');
+
+        // $fileSampul = $this->request->getFile('sampul');
+        // $newName = $fileSampul->getRandomName();
+        // $fileSampul->move('./uploads/',$newName);
+
+        $fileSampul = $this->request->getFile('sampul');
+        // pindahkan file ke folder image
+        $fileSampul->move('images');
+        // ambil nama file
+        $namaSampul = $fileSampul->getName();
+
 
         $slug = url_title($this->request->getVar('judul'), '-', true);
         $this->materiModel->save([
@@ -76,7 +124,7 @@ class Materi extends BaseController
             'slug'      => $slug,
             'penulis'   => $this->request->getVar('penulis'),
             'penerbit'  => $this->request->getVar('penerbit'),
-            'sampul'    => $this->request->getVar('sampul')
+            'sampul'    => $namaSampul
         ]);
 
         session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');

@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-8">
             <h2 class="my-3">Form Tambah Data Materi</h2>
-            <form action="/materi/save" method="post">
+            <form action="/materi/save" method="post" enctype="multipart/form-data">
                 <?= csrf_field(); ?>
                 <div class="form-group row mb-3">
                     <label for="judul" class="col-sm-2 col-form-label">Judul</label>
@@ -37,9 +37,11 @@
                 <div class="form-group row mb-3">
                     <label for="sampul" class="col-sm-2 col-form-label">Sampul</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="sampul" name="sampul" value="<?= old('sampul'); ?>">
-                        <div class="invalid-feedback">
-                            <?= $validation->getError('sampul'); ?>
+                        <div class="custom-file">
+                            <input type="file" class="form-control <?= ($validation->hasError('sampul')) ? 'is-invalid' : ''; ?>" id="sampul" name="sampul">
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('sampul'); ?>
+                            </div>
                         </div>
                     </div>
                 </div>
