@@ -16,9 +16,14 @@
                             <p class="card-text"><b>Penulis :</b> <?= $materi['penulis']; ?></p>
                             <p class="card-text"><small class="text-body-secondary"><b>Penerbit :</b> <?= $materi['penerbit']; ?></small></p>
 
-                            <a href="" class="btn btn-warning"> Edit</a>
-                            <a href="/materi/delete/<?= $materi['id']; ?>" class="btn btn-danger"> Delete</a>
-                            <a href="/materi" class="btn btn-success"> Back to List Materi</a>
+                            <a href="/materi/edit/<?= $materi['slug']; ?>" class="btn btn-warning"> Edit</a>
+
+                            <form action="/materi/<?= $materi['id']; ?>" method="post" class="d-inline">
+                                <?= csrf_field(); ?>
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin menghapus data ini? Tindakan ini dapat menghapus dari Database!')">Delete</button>
+                            </form>
+                            <a href="/materi" class="btn btn-success d-inline"> Back to List Materi</a>
                         </div>
                     </div>
                 </div>

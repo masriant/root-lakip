@@ -39,9 +39,12 @@ $routes->get('/pages/contact', 'Pages::contact');
 // MATERI
 $routes->get('/materi', 'Materi::index');
 $routes->get('/materi/create', 'Materi::create');
+$routes->get('/materi/edit/(:segment)', 'Materi::edit/$1');
+$routes->post('/materi/update/(:segment)', 'Materi::update/$1');
 $routes->post('/materi/save', 'Materi::save');
-$routes->get('/materi/delete/(:num)', 'Materi::delete/$1');
-$routes->get('/materi/(:segment)', 'Materi::detail/$1');
+$routes->delete('/materi/(:num)', 'Materi::delete/$1');
+$routes->get('/materi/(:any)', 'Materi::detail/$1');
+
 
 
 
