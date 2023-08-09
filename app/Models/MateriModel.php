@@ -9,6 +9,7 @@ class MateriModel extends Model
     protected $table = 'materi';
     protected $useTimestamps = 'true';
     protected $allowedFields = ['judul', 'slug', 'penulis', 'penerbit', 'sampul'];
+    
 
     public function getMateri($slug = false)
     {

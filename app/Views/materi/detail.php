@@ -17,7 +17,7 @@
                             <p class="card-text"><small class="text-body-secondary"><b>Penerbit :</b> <?= $materi['penerbit']; ?></small></p>
 
                             <a href="" class="btn btn-warning"> Edit</a>
-                            <a href="" class="btn btn-danger"> Delete</a>
+                            <a href="/materi/delete/<?= $materi['id']; ?>" class="btn btn-danger"> Delete</a>
                             <a href="/materi" class="btn btn-success"> Back to List Materi</a>
                         </div>
                     </div>

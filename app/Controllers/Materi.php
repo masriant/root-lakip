@@ -7,6 +7,7 @@ use App\Models\MateriModel;
 class Materi extends BaseController
 {
     protected $materiModel;
+
     public function __construct()
     {
         $this->materiModel = new MateriModel();
@@ -18,7 +19,7 @@ class Materi extends BaseController
         // $materi = $this->materiModel->getMateri();
 
         $data   = [
-            'title' => 'Daftar Materi',
+            'title'     => 'Daftar Materi',
             // 'materi'    => $materi,
             'materi'    => $this->materiModel->getMateri()
         ];
@@ -84,8 +85,8 @@ class Materi extends BaseController
     {
         // session();
         $data   = [
-            'title' => 'Form Tambah Data Materi',
-            'validation' => \Config\Services::validation(),
+            'title'         => 'Form Tambah Data Materi',
+            'validation'    => \Config\Services::validation()
         ];
 
         return view('materi/create', $data);
@@ -98,16 +99,17 @@ class Materi extends BaseController
         if (!$this->validate([
             // 'judul' => 'required|is_unique[materi.judul]',
 
-            'judul' => [
-                'rules' => 'required|is_unique[materi.judul]',
-                'errors' => [
-                    'required' => '{field} harus diisi!',
-                    'is_unique' => '{field} sudah terdaftar!'
+            'judul'     => [
+                'rules'     => 'required|is_unique[materi.judul]',
+                'errors'    => [
+                    'required'  => '{field} harus diisi!',
+                    'is_unique' => '{field} sudah terdaftar pada database kami, gunakan yang unik!'
                 ]
             ]
         ])) {
 
             $validation = \Config\Services::validation();
+            // dd($validation);
             return redirect()->to('/materi/create')->withInput()->with('validation', $validation);
         }
 
@@ -115,11 +117,11 @@ class Materi extends BaseController
 
         $slug = url_title($this->request->getVar('judul'), '-', true);
         $this->materiModel->save([
-            'judul' => $this->request->getVar('judul'),
-            'slug' => $slug,
-            'penulis' => $this->request->getVar('penulis'),
-            'penerbit' => $this->request->getVar('penerbit'),
-            'sampul' => $this->request->getVar('sampul')
+            'judul'     => $this->request->getVar('judul'),
+            'slug'      => $slug,
+            'penulis'   => $this->request->getVar('penulis'),
+            'penerbit'  => $this->request->getVar('penerbit'),
+            'sampul'    => $this->request->getVar('sampul')
         ]);
 
         session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');
@@ -128,10 +130,17 @@ class Materi extends BaseController
     }
 
     // ---------------------------------------------------------------------------------------
+    public function delete($id)
+    {
+        $this->materiModel->delete($id);
+        session()->setFlashdata('pesan', 'Data berhasil dihapus.');
+        return redirect()->to('/materi');
+    }
+    // ---------------------------------------------------------------------------------------
     public function category()
     {
         $data   = [
-            'title' => "Category",
+            'title'     => "Category",
         ];
         return view('materi/category', $data);
     }

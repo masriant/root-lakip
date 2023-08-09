@@ -40,6 +40,7 @@ $routes->get('/pages/contact', 'Pages::contact');
 $routes->get('/materi', 'Materi::index');
 $routes->get('/materi/create', 'Materi::create');
 $routes->post('/materi/save', 'Materi::save');
+$routes->get('/materi/delete/(:num)', 'Materi::delete/$1');
 $routes->get('/materi/(:segment)', 'Materi::detail/$1');
 
 
