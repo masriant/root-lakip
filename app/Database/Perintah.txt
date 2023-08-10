@@ -7,3 +7,8 @@ php spark migrate
 
 // SEEDS
 php spark db:seed OrangSeeder
+
+// Faker
+// composer require fzaninotto/faker
+composer require fakerphp/faker
+

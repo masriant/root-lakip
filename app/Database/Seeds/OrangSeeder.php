@@ -10,6 +10,18 @@ class OrangSeeder extends Seeder
 {
     public function run()
     {
+        $faker = \Faker\Factory::create();
+        $data = [
+            'nama'          => $faker->name,
+            'alamat'        => $faker->address,
+            'created_at'    => Time::now(),
+            'updated_at'    => Time::now(),
+        ];
+
+        $this->db->table('orang')->insert($data);
+
+
+
         // -----------------------------------------------------------------------------------------------------------------
         // Simple Queries
         // -----------------------------------------------------------------------------------------------------------------
@@ -28,28 +40,28 @@ class OrangSeeder extends Seeder
         // -----------------------------------------------------------------------------------------------------------------
         // Using Query Builder
         // -----------------------------------------------------------------------------------------------------------------
-        $data = [
-            [
-                'nama'          => 'Masrianto',
-                'alamat'        => 'Jl. Serdang Baru Raya No.4B Kemayoran - Jakarta',
-                'created_at'    => Time::now(),
-                'updated_at'    => Time::now()
-            ],
-            [
-                'nama'          => 'Hasan Basri',
-                'alamat'        => 'Jl. Taruna Jaya No.44 Kemayoran - Jakarta',
-                'created_at'    => Time::now(),
-                'updated_at'    => Time::now()
-            ],
-            [
-                'nama'          => 'Muh Zainal',
-                'alamat'        => 'Jl. Cempaka Utara 4 No.25 Kemayoran - Jakarta',
-                'created_at'    => Time::now(),
-                'updated_at'    => Time::now()
-            ]
-        ];
+        // $data = [
+        //     [
+        //         'nama'          => 'Masrianto',
+        //         'alamat'        => 'Jl. Serdang Baru Raya No.4B Kemayoran - Jakarta',
+        //         'created_at'    => Time::now(),
+        //         'updated_at'    => Time::now()
+        //     ],
+        //     [
+        //         'nama'          => 'Hasan Basri',
+        //         'alamat'        => 'Jl. Taruna Jaya No.44 Kemayoran - Jakarta',
+        //         'created_at'    => Time::now(),
+        //         'updated_at'    => Time::now()
+        //     ],
+        //     [
+        //         'nama'          => 'Muh Zainal',
+        //         'alamat'        => 'Jl. Cempaka Utara 4 No.25 Kemayoran - Jakarta',
+        //         'created_at'    => Time::now(),
+        //         'updated_at'    => Time::now()
+        //     ]
+        // ];
 
-        // $this->db->table('orang')->insert($data);
-        $this->db->table('orang')->insertBatch($data);
+        // $this->db->table('orang')->insert($data); // untuk isi satu data
+        // $this->db->table('orang')->insertBatch($data); // untuk isi banyak data
     }
 }
