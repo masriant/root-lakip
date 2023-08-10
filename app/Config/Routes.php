@@ -44,6 +44,11 @@ $routes->post('/materi/update/(:segment)', 'Materi::update/$1');
 $routes->post('/materi/save', 'Materi::save');
 $routes->delete('/materi/(:num)', 'Materi::delete/$1');
 $routes->get('/materi/(:any)', 'Materi::detail/$1');
+// ORANG
+$routes->get('/orang', 'Orang::index');
+$routes->get('/orang/create', 'Orang::create');
+$routes->post('/orang/(:any)', 'Orang::detail/$1');
+
 
 
 
