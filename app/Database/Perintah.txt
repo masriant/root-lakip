@@ -10,5 +10,5 @@ php spark db:seed OrangSeeder
 
 // Faker
 // composer require fzaninotto/faker
-composer require fakerphp/faker
+composer require fakerphp/faker // https://fakerphp.github.io/
 
