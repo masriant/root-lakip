@@ -1,0 +1,9 @@
+// MIGRATIONS
+// Buat tabel di Database
+php spark migrate:create Orang
+
+// Jalankan migrasi untuk membuat table di database
+php spark migrate
+
+// SEEDS
+php spark db:seed OrangSeeder
