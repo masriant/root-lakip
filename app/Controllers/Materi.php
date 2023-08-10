@@ -83,7 +83,6 @@ class Materi extends BaseController
             return redirect()->to('/materi/create')->withInput();
         }
 
-        // Ambil Gambar
         // $fileSampul = $this->request->getFile('sampul');
         // if ($fileSampul->getError() == 4) {
         //     $namaSampul ='sampul-default.jpg';
@@ -110,6 +109,7 @@ class Materi extends BaseController
         // $newName = $fileSampul->getRandomName();
         // $fileSampul->move('./uploads/',$newName);
 
+        // Ambil Gambar
         $fileSampul = $this->request->getFile('sampul');
         // apakah tidak ada gambar yang di upload
         if ($fileSampul->getError() == 4) {
@@ -117,12 +117,9 @@ class Materi extends BaseController
         } else {
             // Generate nama sampul random
             $namaSampul = $fileSampul->getRandomName();
-            // pindahkan file ke folder image
+            // pindahkan file ke folder images 
             $fileSampul->move('images', $namaSampul);
         }
-
-
-
 
         // ambil nama file sampul
         // $namaSampul = $fileSampul->getName();
@@ -148,7 +145,7 @@ class Materi extends BaseController
         // cari gambar berdasarkan id
         $materi = $this->materiModel->find($id);
 
-        // cek jika file gambar default
+        // cek jika file gambar default.jpg
         if ($materi['sampul'] != 'default.jpg') {
             // hapus gambar
             unlink('images/' . $materi['sampul']);
