@@ -11,8 +11,6 @@
                     table {
                         width: 100%;
                         border-collapse: collapse;
-
-
                     }
 
                     th,
@@ -30,13 +28,11 @@
                         background-color: #f5f5f5;
                     }
                 </style>
-
                 <tr>
                     <th>Type</th>
                     <th>Alamat</th>
                     <th>Telepon</th>
                     <th>Email</th>
-
                 </tr>
                 <?php foreach ($alamat as $a) : ?>
                     <tr>
@@ -44,20 +40,13 @@
                         <td><?= $a['alamat']; ?></td>
                         <td><?= $a['telepon']; ?></td>
                         <td><?= $a['email']; ?></td>
-
                     </tr>
                 <?php endforeach; ?>
-
                 <!-- Tambahkan baris lain untuk alamat lainnya -->
             </table>
-
-
-
             <br>
-
             <div class="container">
                 <div class="row">
-
                     <?php foreach ($alamat as $a) : ?>
                         <tr>
                             <td>

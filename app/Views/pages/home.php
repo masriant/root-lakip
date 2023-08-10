@@ -8,8 +8,6 @@
             <h1>Home</h1>
             <p>Ini Adalah Halaman Home LAKIP.</p>
             <p>LAKIP singkatan dari Lembaga Administrasi Keuangan dan Ilmu Pemerintahan, didirikan di Jakarta pada Agustus 2018.</p>
-
-
         </div>
     </div>
 </div>
