@@ -27,11 +27,13 @@
             <!-- FlashData -->
 
             <table class="table">
+
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Alamat</th>
+                        <th scope="col">WhatsApp</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
@@ -42,8 +44,9 @@
                             <th scope="row"><?= $i++; ?></th>
                             <td><?= $o['nama']; ?></td>
                             <td><?= $o['alamat']; ?></td>
+                            <td><a href="tel:<?= $o['whatsapp']; ?>" class="btn btn-success">WhatsApp</a></td>
                             <td>
-                                <a href="" class="btn btn-success">Details</a>
+                                <a href="/orang/<?= $o['slug']; ?>" class="btn btn-primary">Details</a>
                             </td>
                         </tr>
                     <?php endforeach;  ?>

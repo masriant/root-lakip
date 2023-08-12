@@ -53,7 +53,7 @@ class Orang extends BaseController
         // ---------------------------------------------------------------------------------------
         $data = [
             'title'     => 'Details Orang',
-            'orang'    => $this->orangModel->getMateri($slug)
+            'orang'    => $this->orangModel->getOrang($slug)
         ];
 
         // Jika orang tidak ada di tabel
@@ -81,7 +81,7 @@ class Orang extends BaseController
     {
         // validasi input
         if (!$this->validate([
-            'judul'     => [
+            'nama'     => [
                 'rules'     => 'required|is_unique[orang.judul]',
                 'errors'    => [
                     'required'  => '{field} harus diisi!',
@@ -151,10 +151,10 @@ class Orang extends BaseController
 
         $slug = url_title($this->request->getVar('judul'), '-', true);
         $this->orangModel->save([
-            'judul'     => $this->request->getVar('judul'),
+            'nama'     => $this->request->getVar('judul'),
             'slug'      => $slug,
-            'penulis'   => $this->request->getVar('penulis'),
-            'penerbit'  => $this->request->getVar('penerbit'),
+            'alamat'   => $this->request->getVar('alamat'),
+            'whatsapp'  => $this->request->getVar('whatsapp'),
             'sampul'    => $namaSampul
         ]);
 
@@ -185,7 +185,7 @@ class Orang extends BaseController
         $data   = [
             'title'         => 'Form Ubah Data Orang',
             'validation'    => \Config\Services::validation(),
-            'orang'        => $this->orangModel->getMateri($slug)
+            'orang'        => $this->orangModel->getOrang($slug)
         ];
 
         return view('orang/edit', $data);
@@ -197,16 +197,16 @@ class Orang extends BaseController
     public function update($id)
     {
         // Cek Judul
-        $materiLama = $this->orangModel->getMateri($this->request->getVar('slug'));
-        if ($materiLama['judul'] == $this->request->getVar('judul')) {
+        $materiLama = $this->orangModel->getOrang($this->request->getVar('slug'));
+        if ($materiLama['nama'] == $this->request->getVar('nama')) {
             $rule_judul = 'required';
         } else {
-            $rule_judul = 'required|is_unique[orang.judul]';
+            $rule_judul = 'required|is_unique[orang.nama]';
         }
 
         // validasi input
         if (!$this->validate([
-            'judul'     => [
+            'nama'     => [
                 'rules'     => $rule_judul,
                 'errors'    => [
                     'required'  => '{field} harus diisi!',
@@ -245,13 +245,13 @@ class Orang extends BaseController
 
         // ---------------------------------------------------------------------------------------
 
-        $slug = url_title($this->request->getVar('judul'), '-', true);
+        $slug = url_title($this->request->getVar('nama'), '-', true);
         $this->orangModel->save([
             'id'        => $id,
-            'judul'     => $this->request->getVar('judul'),
+            'nama'     => $this->request->getVar('nama'),
             'slug'      => $slug,
-            'penulis'   => $this->request->getVar('penulis'),
-            'penerbit'  => $this->request->getVar('penerbit'),
+            'alamat'   => $this->request->getVar('alamat'),
+            'whatsapp'  => $this->request->getVar('whatsapp'),
             'sampul'    => $namaSampul
         ]);
 

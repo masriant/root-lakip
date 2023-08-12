@@ -19,7 +19,27 @@ class Orang extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
+            'slug' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+            ],
             'alamat' => [
+                'type' => 'VARCHAR',
+                'constraint' => '255',
+            ],
+            'email' => [
+                'type' => 'VARCHAR',
+                'constraint' => '255',
+            ],
+            'whatsapp' => [
+                'type' => 'VARCHAR',
+                'constraint' => '255',
+            ],
+            'telepon' => [
+                'type' => 'VARCHAR',
+                'constraint' => '255',
+            ],
+            'sampul' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
             ],

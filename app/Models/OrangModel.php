@@ -8,7 +8,7 @@ class OrangModel extends Model
 {
     protected $table = 'orang';
     protected $useTimestamps = 'true';
-    protected $allowedFields = ['nama', 'alamat'];
+    protected $allowedFields = ['nama', 'slug', 'alamat', 'email', 'whatsapp', 'telepon', 'sampul'];
     // protected $allowedFields = ['judul', 'slug', 'penulis', 'penerbit', 'sampul'];
 
     public function search($keyword)
@@ -21,12 +21,12 @@ class OrangModel extends Model
     }
 
 
-    // public function getOrang($slug = false)
-    // {
-    //     if ($slug == false) {
-    //         return $this->findAll();
-    //     }
+    public function getOrang($slug = false)
+    {
+        if ($slug == false) {
+            return $this->findAll();
+        }
 
-    //     return $this->where(['slug' => $slug])->first();
-    // }
+        return $this->where(['slug' => $slug])->first();
+    }
 }

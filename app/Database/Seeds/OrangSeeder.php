@@ -11,11 +11,16 @@ class OrangSeeder extends Seeder
     public function run()
     {
         $faker = \Faker\Factory::create('id_ID');
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             $data = [
                 'nama'          => $faker->name('male' | 'female'),
                 // 'nama'          => $faker->name('male'),
+                'slug'          => $faker->slug(2),
                 'alamat'        => $faker->address,
+                'email'         => $faker->email(),
+                'whatsapp'      => $faker->nik(),
+                'telepon'       => $faker->nik(),
+                'sampul'        => $faker->name('male' | 'female'),
                 'created_at'    => Time::createFromTimestamp($faker->unixTime()),
                 'updated_at'    => Time::now(),
             ];
