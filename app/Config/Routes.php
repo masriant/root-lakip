@@ -47,7 +47,7 @@ $routes->get('/materi/(:any)', 'Materi::detail/$1');
 // ORANG
 $routes->get('/orang', 'Orang::index');
 $routes->get('/orang/create', 'Orang::create');
-$routes->post('/orang/(:any)', 'Orang::detail/$1');
+$routes->post('/orang/(:any)', 'Orang::index');
 
 
 
