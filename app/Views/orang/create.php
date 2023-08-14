@@ -4,13 +4,22 @@
 <div class="container">
     <div class="row">
         <div class="col-8">
-            <h2 class="my-3">Form Tambah Data Materi</h2>
+            <h2 class="my-3">Form Tambah Data Peserta</h2>
             <form action="/orang/save" method="post" enctype="multipart/form-data">
                 <?= csrf_field(); ?>
                 <div class="form-group row mb-4">
+                    <label for="users" class="col-sm-2 col-form-label">UserID</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control <?= ($validation->hasError('users')) ? 'is-invalid' : ''; ?>" id="users" name="users" autofocus value="<?= old('users'); ?>">
+                        <div class="invalid-feedback">
+                            <?= $validation->getError('users'); ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row mb-4">
                     <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" id="nama" name="nama" autofocus value="<?= old('nama'); ?>">
+                        <input type="text" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" id="nama" name="nama" value="<?= old('nama'); ?>">
                         <div class="invalid-feedback">
                             <?= $validation->getError('nama'); ?>
                         </div>
@@ -26,11 +35,29 @@
                     </div>
                 </div>
                 <div class="form-group row mb-4">
+                    <label for="email" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="email" name="email" value="<?= old('email'); ?>">
+                        <div class="invalid-feedback">
+                            <?= $validation->getError('email'); ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row mb-4">
                     <label for="whatsapp" class="col-sm-2 col-form-label">WhatsApp</label>
                     <div class="col-sm-10">
                         <input type="number" class="form-control" id="whatsapp" name="whatsapp" value="<?= old('whatsapp'); ?>">
                         <div class="invalid-feedback">
                             <?= $validation->getError('whatsapp'); ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row mb-4">
+                    <label for="telepon" class="col-sm-2 col-form-label">Telepon</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="telepon" name="telepon" value="<?= old('telepon'); ?>">
+                        <div class="invalid-feedback">
+                            <?= $validation->getError('telepon'); ?>
                         </div>
                     </div>
                 </div>

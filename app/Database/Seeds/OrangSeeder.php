@@ -13,14 +13,15 @@ class OrangSeeder extends Seeder
         $faker = \Faker\Factory::create('id_ID');
         for ($i = 0; $i < 50; $i++) {
             $data = [
+                'users'         => $faker->firstName(),
                 'nama'          => $faker->name('male' | 'female'),
-                // 'nama'          => $faker->name('male'),
                 'slug'          => $faker->slug(2),
                 'alamat'        => $faker->address,
                 'email'         => $faker->email(),
-                'whatsapp'      => $faker->nik(),
+                'whatsapp'      => $faker->phoneNumber(),
                 'telepon'       => $faker->nik(),
-                'sampul'        => $faker->name('male' | 'female'),
+                'sampul'        => 'default.jpg',
+                // 'sampul'        => $faker->firstName(),
                 'created_at'    => Time::createFromTimestamp($faker->unixTime()),
                 'updated_at'    => Time::now(),
             ];

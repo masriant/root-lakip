@@ -15,6 +15,10 @@ class Orang extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
+            'users' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '100',
+            ],
             'nama' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',

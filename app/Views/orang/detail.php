@@ -4,7 +4,14 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h2 class="mt-2">Detail Orang</h2>
+            <h2 class="my-3">Detail Peserta</h2>
+            <!-- FlashData -->
+            <?php if (session()->getFlashdata('pesan')) : ?>
+                <div class="alert alert-success" role="alert">
+                    <?= session()->getFlashdata('pesan'); ?>
+                </div>
+            <?php endif; ?>
+            <!-- FlashData -->
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row g-0">
                     <div class="col-md-4">
@@ -12,7 +19,7 @@
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title"><?= $orang['nama']; ?></h5>
+                            <h5 class="card-title"><?= $orang['nama']; ?> <span class="text-danger"><b>( <?= $orang['users']; ?> )</b> </span></h5>
                             <p class="card-text"><b>Alamat :</b> <?= $orang['alamat']; ?></p>
                             <p class="card-text"><small class="text-body-secondary"><b>Email :</b> <?= $orang['email']; ?></small></p>
                             <p class="card-text"><small class="text-body-secondary"><b>Whatsapp :</b> <?= $orang['whatsapp']; ?> </small></p>

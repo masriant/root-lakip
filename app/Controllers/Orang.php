@@ -30,10 +30,10 @@ class Orang extends BaseController
 
 
         $data   = [
-            'title'         => 'Daftar Orang',
+            'title'         => 'Daftar Peserta',
             // 'orang'      => $this->orangModel->findAll()
             // 'orang'      => $this->orangModel->paginate(6, 'orang'),
-            'orang'         => $orang->paginate(6, 'orang'),
+            'orang'         => $orang->paginate(10, 'orang'),
             'pager'         => $this->orangModel->pager,
             'currentPage'   => $currentPage
 
@@ -52,7 +52,7 @@ class Orang extends BaseController
     {
         // ---------------------------------------------------------------------------------------
         $data = [
-            'title'     => 'Details Orang',
+            'title'     => 'Details Peserta',
             'orang'    => $this->orangModel->getOrang($slug)
         ];
 
@@ -69,7 +69,7 @@ class Orang extends BaseController
     {
         // session();
         $data   = [
-            'title'         => 'Form Tambah Data Orang',
+            'title'         => 'Form Tambah Data Peserta',
             'validation'    => \Config\Services::validation()
         ];
 
@@ -82,7 +82,7 @@ class Orang extends BaseController
         // validasi input
         if (!$this->validate([
             'nama'     => [
-                'rules'     => 'required|is_unique[orang.judul]',
+                'rules'     => 'required|is_unique[orang.nama]',
                 'errors'    => [
                     'required'  => '{field} harus diisi!',
                     'is_unique' => '{field} sudah terdaftar pada database kami, gunakan yang unik!'
@@ -149,16 +149,19 @@ class Orang extends BaseController
         // $namaSampul = $fileSampul->getName();
 
 
-        $slug = url_title($this->request->getVar('judul'), '-', true);
+        $slug = url_title($this->request->getVar('nama'), '-', true);
         $this->orangModel->save([
-            'nama'     => $this->request->getVar('judul'),
+            'users'     => $this->request->getVar('users'),
+            'nama'     => $this->request->getVar('nama'),
             'slug'      => $slug,
             'alamat'   => $this->request->getVar('alamat'),
+            'email'   => $this->request->getVar('email'),
             'whatsapp'  => $this->request->getVar('whatsapp'),
+            'telepon'  => $this->request->getVar('telepon'),
             'sampul'    => $namaSampul
         ]);
 
-        session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');
+        session()->setFlashdata('pesan', 'Data *** ' . $this->request->getVar('nama') . ' *** berhasil ditambahkan.');
 
         return redirect()->to('/orang');
     }
@@ -176,14 +179,14 @@ class Orang extends BaseController
         }
 
         $this->orangModel->delete($id);
-        session()->setFlashdata('pesan', 'Data berhasil dihapus.');
+        session()->setFlashdata('pesan', 'Data *** ' . $orang['nama'] . ' *** berhasil dihapus.');
         return redirect()->to('/orang');
     }
     // ---------------------------------------------------------------------------------------
     public function edit($slug)
     {
         $data   = [
-            'title'         => 'Form Ubah Data Orang',
+            'title'         => 'Form Ubah Data Peserta',
             'validation'    => \Config\Services::validation(),
             'orang'        => $this->orangModel->getOrang($slug)
         ];
@@ -248,15 +251,19 @@ class Orang extends BaseController
         $slug = url_title($this->request->getVar('nama'), '-', true);
         $this->orangModel->save([
             'id'        => $id,
+            'users'     => $this->request->getVar('users'),
             'nama'     => $this->request->getVar('nama'),
             'slug'      => $slug,
             'alamat'   => $this->request->getVar('alamat'),
+            'email'   => $this->request->getVar('email'),
             'whatsapp'  => $this->request->getVar('whatsapp'),
+            'telepon'  => $this->request->getVar('telepon'),
             'sampul'    => $namaSampul
         ]);
 
         session()->setFlashdata('pesan', 'Data berhasil diubah.');
-        return redirect()->to('/orang');
+        // return redirect()->to('/orang/' . $orang['slug']);
+        return redirect()->to('/orang/' . $slug);
     }
     // ---------------------------------------------------------------------------------------
     public function category()
