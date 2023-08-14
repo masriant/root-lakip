@@ -52,6 +52,16 @@ $routes->post('/orang/update/(:segment)', 'Orang::update/$1');
 $routes->post('/orang/save', 'Orang::save');
 $routes->delete('/orang/(:num)', 'Orang::delete/$1');
 $routes->get('/orang/(:any)', 'Orang::detail/$1');
+// BIMTEK
+$routes->get('/bimtek', 'Blognews::index');
+$routes->get('/bimtek/create', 'Blognews::create');
+$routes->get('/bimtek/edit/(:segment)', 'Blognews::edit/$1');
+$routes->post('/bimtek/update/(:segment)', 'Blognews::update/$1');
+$routes->post('/bimtek/save', 'Blognews::save');
+$routes->delete('/bimtek/(:num)', 'Blognews::delete/$1');
+$routes->get('/bimtek/(:any)', 'Blognews::detail/$1');
+
+
 
 
 

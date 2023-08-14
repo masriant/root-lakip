@@ -20,6 +20,9 @@
                         <a class="nav-link" href="<?= base_url('/materi'); ?>">Materi</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('/bimtek'); ?>">Blog</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('/orang'); ?>">Orang</a>
                     </li>
                     <li class="nav-item">

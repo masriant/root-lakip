@@ -12,3 +12,38 @@ php spark db:seed OrangSeeder
 // composer require fzaninotto/faker
 composer require fakerphp/faker // https://fakerphp.github.io/
 
+php spark migrate:create Users
+php spark migrate
+
+php spark migrate:create Blognews
+php spark migrate
+php spark db:seed BlognewsSeeder
+
+
+1. php spark make:controller Home --resource
+2. php spark serve
+3. http://localhost:8080/home
+4. http://localhost:8080/home/index
+5. http://localhost:8080/home/about
+6. http://localhost:8080/home/contact
+
+php spark db:seed UsersSeeder
+
+// buat database blog
+_db, dan import file sql ke dalam database tersebut
+// install laravel-permission package
+composer require spatie/laravel-permission
+// jalankan migration
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+php artisan migrate
+7. Tambahkan middleware Auth::routes() pada routes/web.php
+8. Buat model User dengan menggunakan command line : php artisan make:model User -m
+(maksudnya adalah create model user)
+9. Buat controller AdminController yang berisi method index(), show($id), store(), update($id).
+Dan tambahkan route admin ke web.php
+10. Buat view untuk halaman home, about & contact
+11. Buat seeder untuk mengelola data users (admin, member 1,member 2, member 3)
+12. Install Laravel Passport
+https://spatie.be/docs/laravel-permission/v3/installation-laravel#install-passport
+13. Create a new passport client for your application by running the following Artisan command from within your project's root directory:
+
