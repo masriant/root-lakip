@@ -60,6 +60,14 @@ $routes->post('/bimtek/update/(:segment)', 'Blognews::update/$1');
 $routes->post('/bimtek/save', 'Blognews::save');
 $routes->delete('/bimtek/(:num)', 'Blognews::delete/$1');
 $routes->get('/bimtek/(:any)', 'Blognews::detail/$1');
+// DPRD
+$routes->get('/dprd', 'Dprd::index');
+$routes->get('/dprd/create', 'Dprd::create');
+$routes->get('/dprd/edit/(:segment)', 'Dprd::edit/$1');
+$routes->post('/dprd/update/(:segment)', 'Dprd::update/$1');
+$routes->post('/dprd/save', 'Dprd::save');
+$routes->delete('/dprd/(:num)', 'Dprd::delete/$1');
+$routes->get('/dprd/(:any)', 'Dprd::detail/$1');
 
 
 

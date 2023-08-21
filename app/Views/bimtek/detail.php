@@ -23,6 +23,8 @@
                             <p class="card-text"><b>Alamat :</b> <?= $blognews['post_content']; ?></p>
                             <p class="card-text"><small class="text-body-secondary"><b>Author :</b> <?= $blognews['post_author']; ?></small></p>
                             <p class="card-text"><small class="text-body-secondary"><b>Posting :</b> <?= $blognews['post_date']; ?> </small></p>
+                            <p class="card-text"><small class="text-body-secondary"><b>Created At :</b> <?= $blognews['created_at']; ?> </small></p>
+                            <p class="card-text"><small class="text-body-secondary"><b>Last Update :</b> <?= $blognews['updated_at']; ?> </small></p>
                             <br>
                             <a href="/bimtek/edit/<?= $blognews['slug']; ?>" class="btn btn-warning"> Edit </a>
 

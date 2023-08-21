@@ -19,6 +19,38 @@ php spark migrate:create Blognews
 php spark migrate
 php spark db:seed BlognewsSeeder
 
+php spark migrate:create Category
+php spark migrate
+php spark db:seed CategorySeeder
+
+php spark migrate:create Peserta
+php spark migrate
+php spark db:seed PesertaSeeder
+
+php spark migrate:create Dprd
+php spark migrate
+php spark db:seed DprdSeeder
+
+php spark migrate:create Opdskpd
+php spark migrate
+php spark db:seed OpdskpdSeeder
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 1. php spark make:controller Home --resource
 2. php spark serve
