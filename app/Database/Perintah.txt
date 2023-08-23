@@ -10,7 +10,8 @@ php spark db:seed OrangSeeder
 
 // Faker
 // composer require fzaninotto/faker
-composer require fakerphp/faker // https://fakerphp.github.io/
+composer require fakerphp/faker // https://fakerphp.github.io/ 
+Cempak4_utar44
 
 php spark migrate:create Users
 php spark migrate
@@ -36,16 +37,18 @@ php spark migrate
 php spark db:seed OpdskpdSeeder
 
 
+masrianto.lakip
+Cempak4_utar44
 
 
 
+database : lakipcoi_db_materi
 
+Username : lakipcoi_xmars
+lakipcoi_xmars
+pass : {ZNZbQA_Axn}
 
-
-
-
-
-
+Success: You saved “lakipcoi_xmars”’s privileges on the database “lakipcoi_db_materi”.
 
 
 

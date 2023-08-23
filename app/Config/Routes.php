@@ -62,6 +62,7 @@ $routes->delete('/bimtek/(:num)', 'Blognews::delete/$1');
 $routes->get('/bimtek/(:any)', 'Blognews::detail/$1');
 // DPRD
 $routes->get('/dprd', 'Dprd::index');
+$routes->get('/dprd/category', 'Dprd::category');
 $routes->get('/dprd/create', 'Dprd::create');
 $routes->get('/dprd/edit/(:segment)', 'Dprd::edit/$1');
 $routes->post('/dprd/update/(:segment)', 'Dprd::update/$1');

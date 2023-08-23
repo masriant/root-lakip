@@ -23,6 +23,9 @@
                         <a class="nav-link" href="<?= base_url('/dprd'); ?>">DPRD</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('/dprd/category'); ?>">List</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('/bimtek'); ?>">Blog</a>
                     </li>
                     <li class="nav-item">

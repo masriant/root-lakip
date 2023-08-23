@@ -15,7 +15,7 @@ class Dprd extends BaseController
     // ---------------------------------------------------------------------------------------
     public function index()
     {
-        $currentPage = $this->request->getVar('page_orang') ? $this->request->getVar('page_orang') : 1;
+        $currentPage = $this->request->getVar('page_dprd') ? $this->request->getVar('page_dprd') : 1;
 
         // d($this->request->getVar('keyword'));
 
@@ -258,7 +258,15 @@ class Dprd extends BaseController
     {
         $data   = [
             'title'     => "Category",
+            'dprd'      => $this->dprdModel->findAll(),
+            // 'dprd'      => $this->dprdModel->getDprd()
         ];
+
+        // Jika dprd tidak ada di tabel
+        // if (empty($data['dprd'])) {
+        //     throw new \CodeIgniter\Exceptions\PageNotFoundException('Event Anggota ' . $slug . ' tidak ditemukan.');
+        // }
+
         return view('dprd/category', $data);
     }
     // ---------------------------------------------------------------------------------------

@@ -15,7 +15,8 @@ class Blognews extends BaseController
     // ---------------------------------------------------------------------------------------
     public function index()
     {
-        $currentPage = $this->request->getVar('page_orang') ? $this->request->getVar('page_orang') : 1;
+        // $currentPage = $this->request->getVar('page_orang') ? $this->request->getVar('page_orang') : 1;
+        $currentPage = $this->request->getVar('page_blognews') ? $this->request->getVar('page_blognews') : 1;
 
         // d($this->request->getVar('keyword'));
 
@@ -33,7 +34,7 @@ class Blognews extends BaseController
             'title'         => 'Daftar Bimtek',
             // 'blognews'      => $this->blognewsModel->findAll()
             // 'blognews'      => $this->blognewsModel->paginate(6, 'blognews'),
-            'blognews'         => $blognews->paginate(10, 'blognews'),
+            'blognews'      => $blognews->paginate(10, 'blognews'),
             'pager'         => $this->blognewsModel->pager,
             'currentPage'   => $currentPage
 
@@ -107,31 +108,7 @@ class Blognews extends BaseController
             return redirect()->to('/bimtek/create')->withInput();
         }
 
-        // $fileSampul = $this->request->getFile('sampul');
-        // if ($fileSampul->getError() == 4) {
-        //     $namaSampul ='sampul-default.jpg';
-        //     } else {
-        //         // Generate post_title sampul random
-        //         $namaSampul = $fileSampul->getRandomName();
-        //         // Pindahkan File ke folder img
-        //         $fileSampul->move('img/', $namaSampul);
-        //         };
 
-        // $fileSampul = $this->request->getFile('sampul');
-        // $fileName = $fileSampul->getName();
-        // $path = './public/'. $fileName;
-        // move_uploaded_file($_FILES['sampul']['tmp_name'],$path );
-        // echo "File is valid, and was successfully uploaded.\n";
-        // print_r( $_FILES["sampul"]["size"]);
-        // dd($this->request->getPost());
-
-        // $fileSampul = $this->request->getFile('sampul');
-        // $fileName = $fileSampul->getClientName();
-        // $fileSampul->storeAs('/', $fileName,'my_files/');
-
-        // $fileSampul = $this->request->getFile('sampul');
-        // $newName = $fileSampul->getRandomName();
-        // $fileSampul->move('./uploads/',$newName);
 
         // Ambil Gambar
         $fileSampul = $this->request->getFile('sampul');
